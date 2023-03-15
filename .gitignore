@@ -1,0 +1,4 @@
+node_modules/
+passwd
+package-lock.json
+.npm/

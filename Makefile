@@ -12,3 +12,10 @@ base:
 build:
 	echo ''"${DOCKER_USER}"':x:'"${DOCKER_UID}"':'"${DOCKER_GID}"'::/app:/sbin/nologin' > passwd
 	docker run --rm -u "${DOCKER_UID}":"${DOCKER_GID}" -v "${PWD}"/passwd:/etc/passwd:ro -v "${PWD}"/app:/app ${PROJECT}-${SERVICE}:build
+	docker build -t ${PROJECT}-${SERVICE}:latest --build-arg IMG=${PROJECT}-${SERVICE}:base -f docker/latest/Dockerfile .
+
+run:
+	docker-compose up
+
+stop:
+	docker-compose down
